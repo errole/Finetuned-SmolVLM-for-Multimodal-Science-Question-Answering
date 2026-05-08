@@ -1,0 +1,2 @@
+outputs/r8_choice_split1024_s42_b2/checkpoint-585
+0.714148

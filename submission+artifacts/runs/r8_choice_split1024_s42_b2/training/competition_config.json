@@ -1,0 +1,14 @@
+{
+  "image_longest_edge": 1024,
+  "do_image_splitting": true,
+  "max_length": 2048,
+  "question_chars": 2000,
+  "hint_chars": 2500,
+  "lecture_chars": 2500,
+  "include_metadata": false,
+  "include_grade_subject": false,
+  "answer_format": "index",
+  "score_normalization": "auto",
+  "train_objective": "choice_ranking",
+  "choice_score_normalization": "auto"
+}

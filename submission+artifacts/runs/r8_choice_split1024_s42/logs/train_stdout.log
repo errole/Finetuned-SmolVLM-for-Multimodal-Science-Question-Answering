@@ -1,0 +1,67 @@
+Using CUDA device: NVIDIA GeForce RTX 5090
+PyTorch: 2.11.0+cu130; CUDA runtime: 13.0
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/489 [00:00<?, ?it/s]Loading weights: 100%|██████████| 489/489 [00:00<00:00, 5887.04it/s]
+LoRA target modules: 224
+Trainable parameters: 4,341,760 / 511,824,064 (0.8483%)
+Cached 3118 train images in RAM as compressed bytes (208.2 MB).
+Using choice-ranking training objective with sum candidate score normalization.
+Writing metrics log to submission+artifacts/runs/r8_choice_split1024_s42/metrics/metrics_log.csv
+Writing metrics JSONL to submission+artifacts/runs/r8_choice_split1024_s42/metrics/metrics_log.jsonl
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+  0%|          | 0/585 [00:00<?, ?it/s]  0%|          | 1/585 [00:06<1:00:06,  6.18s/it]  0%|          | 2/585 [00:08<35:57,  3.70s/it]  Traceback (most recent call last):
+  File "/home/eelbasan/codes/Final/smolvlm_competition.py", line 3424, in <module>
+    main()
+    ~~~~^^
+  File "/home/eelbasan/codes/Final/smolvlm_competition.py", line 3406, in main
+    train(args)
+    ~~~~~^^^^^^
+  File "/home/eelbasan/codes/Final/smolvlm_competition.py", line 1866, in train
+    train_result = trainer.train(resume_from_checkpoint=args.resume_from_checkpoint or None)
+  File "/home/eelbasan/codes/Final/.venv/lib/python3.13/site-packages/transformers/trainer.py", line 1427, in train
+    return inner_training_loop(
+        args=args,
+    ...<2 lines>...
+        ignore_keys_for_eval=ignore_keys_for_eval,
+    )
+  File "/home/eelbasan/codes/Final/.venv/lib/python3.13/site-packages/transformers/trainer.py", line 1509, in _inner_training_loop
+    self._run_epoch(
+    ~~~~~~~~~~~~~~~^
+        model=model,
+        ^^^^^^^^^^^^
+    ...<9 lines>...
+        steps_trained_in_current_epoch=steps_trained_in_current_epoch,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/eelbasan/codes/Final/.venv/lib/python3.13/site-packages/transformers/trainer.py", line 1737, in _run_epoch
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/home/eelbasan/codes/Final/.venv/lib/python3.13/site-packages/transformers/trainer.py", line 1909, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+  File "/home/eelbasan/codes/Final/smolvlm_competition.py", line 1238, in compute_loss
+    outputs = model(**inputs)
+  File "/home/eelbasan/codes/Final/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/eelbasan/codes/Final/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/eelbasan/codes/Final/.venv/lib/python3.13/site-packages/accelerate/utils/operations.py", line 823, in forward
+    return model_forward(*args, **kwargs)
+  File "/home/eelbasan/codes/Final/.venv/lib/python3.13/site-packages/accelerate/utils/operations.py", line 811, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/home/eelbasan/codes/Final/.venv/lib/python3.13/site-packages/accelerate/utils/operations.py", line 790, in convert_to_fp32
+    return recursively_apply(_convert_to_fp32, tensor, test_type=_is_fp16_bf16_tensor)
+  File "/home/eelbasan/codes/Final/.venv/lib/python3.13/site-packages/accelerate/utils/operations.py", line 120, in recursively_apply
+    k: recursively_apply(
+       ~~~~~~~~~~~~~~~~~^
+        func, v, *args, test_type=test_type, error_on_other_type=error_on_other_type, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/eelbasan/codes/Final/.venv/lib/python3.13/site-packages/accelerate/utils/operations.py", line 127, in recursively_apply
+    return func(data, *args, **kwargs)
+  File "/home/eelbasan/codes/Final/.venv/lib/python3.13/site-packages/accelerate/utils/operations.py", line 782, in _convert_to_fp32
+    return tensor.float()
+           ~~~~~~~~~~~~^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.53 GiB. GPU 0 has a total capacity of 31.35 GiB of which 1.97 GiB is free. Including non-PyTorch memory, this process has 29.32 GiB memory in use. Of the allocated memory 27.95 GiB is allocated by PyTorch, and 787.56 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+  0%|          | 2/585 [00:50<4:03:30, 25.06s/it]

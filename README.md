@@ -1,0 +1,1 @@
+# Finetuned-SmolVLM-for-Multimodal-Science-Question-Answering
